@@ -37,5 +37,9 @@ public class Application extends RouteBuilder {
         from("timer://foo?period=5000")
             .setBody().constant("Hello Zoli")
             .log(">>> ${body}");
+
+
+        from("jetty://http://0.0.0.0:8082/say")
+                .transform(method("myBean", "saySomething"));
     }
 }
