@@ -10,6 +10,6 @@ public class MyBeanie {
     private String say;
 
     public String saySomething() {
-        return "hello";
+        return say;
     }
 }
