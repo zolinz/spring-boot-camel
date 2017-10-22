@@ -40,6 +40,7 @@ public class Application extends RouteBuilder {
 
 
         from("jetty://http://0.0.0.0:8082/say")
-                .transform(method("myBean", "saySomething"));
+                .transform(method("myBean", "saySomething"))
+                .log("log ${body}");
     }
 }
