@@ -20,9 +20,13 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.fabric8.quickstarts</groupId>
-  <artifactId>spring-boot-camel</artifactId>
+  <groupId>zoli</groupId>
+  <artifactId>spring-boot-camel-parent</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>navigate</module>
+  </modules>
 
   <name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel</name>
   <description>Spring Boot example running a Camel route</description>
