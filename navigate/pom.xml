@@ -11,12 +11,12 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <parent>
+   <!-- <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.8.RELEASE</version>
-        <relativePath /> <!-- lookup parent from repository -->
-    </parent>
+        <relativePath /> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+    </parent>-->
     <!--<parent>
         <artifactId>spring-boot-camel-parent</artifactId>
         <groupId>zoli</groupId>
