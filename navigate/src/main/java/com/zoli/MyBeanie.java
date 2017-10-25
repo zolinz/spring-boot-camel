@@ -1,5 +1,6 @@
 package com.zoli;
 
+import com.mylib.beans.MyBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,9 @@ public class MyBeanie {
     private String say;
 
     public String saySomething() {
-        return say;
+
+        MyBean myBean = new MyBean();
+
+        return say + myBean.giveMeSomeCrap();
     }
 }
