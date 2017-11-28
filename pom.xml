@@ -27,6 +27,7 @@
   <modules>
         <module>my-library</module>
         <module>navigate</module>
+    <module>application</module>
   </modules>
 
 
