@@ -3,8 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>spring-boot-camel-parent</artifactId>
         <groupId>zoli</groupId>
@@ -16,13 +14,25 @@
     <artifactId>services</artifactId>
 
     <packaging>jar</packaging>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-   <!-- <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
-        <relativePath /> &lt;!&ndash; lookup parent from repository &ndash;&gt;
-    </parent>-->
+    <!-- <parent>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-parent</artifactId>
+         <version>1.5.8.RELEASE</version>
+         <relativePath /> &lt;!&ndash; lookup parent from repository &ndash;&gt;
+     </parent>-->
     <!--<parent>
         <artifactId>spring-boot-camel-parent</artifactId>
         <groupId>zoli</groupId>
@@ -30,23 +40,22 @@
     </parent>-->
 
 
-    <properties>
+  <!--  <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- configure the versions you want to use here -->
-        <fabric8.version>2.3.6</fabric8.version>
-        <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+        &lt;!&ndash; configure the versions you want to use here &ndash;&gt;
+        <fabric8.version>2.2.170.redhat-000019</fabric8.version>
 
         <arquillian-cube.version>1.9.0</arquillian-cube.version>
         <assertj.version>2.4.1</assertj.version>
 
-        <!-- maven plugin versions -->
+        &lt;!&ndash; maven plugin versions &ndash;&gt;
         <fabric8.maven.plugin.version>3.5.31</fabric8.maven.plugin.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-    </properties>
+    </properties>-->
 
-    <dependencyManagement>
+   <!-- <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>io.fabric8</groupId>
@@ -56,7 +65,7 @@
                 <scope>import</scope>
             </dependency>
 
-            <!-- The following dependencies can be removed whe using fabric8 BOM 2.3.7+ -->
+            &lt;!&ndash; The following dependencies can be removed whe using fabric8 BOM 2.3.7+ &ndash;&gt;
             <dependency>
                 <groupId>org.arquillian.cube</groupId>
                 <artifactId>arquillian-cube-bom</artifactId>
@@ -70,7 +79,7 @@
                 <version>${assertj.version}</version>
             </dependency>
         </dependencies>
-    </dependencyManagement>
+    </dependencyManagement>-->
 
     <dependencies>
 
@@ -95,7 +104,30 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jetty</artifactId>
-            <version>2.19.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-infinispan</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-core</artifactId>
+            <version>9.1.0.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http4-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-quartz2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-core</artifactId>
         </dependency>
         <dependency>
             <groupId>zoli</groupId>
@@ -156,6 +188,11 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test-spring</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.infinispan</groupId>
+            <artifactId>infinispan-client-hotrod</artifactId>
+            <version>9.1.1.Final</version>
         </dependency>
 
     </dependencies>

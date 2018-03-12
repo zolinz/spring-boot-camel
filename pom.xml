@@ -36,8 +36,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- configure the versions you want to use here -->
-    <fabric8.version>2.3.6</fabric8.version>
-    <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+    <fabric8.version>2.2.170.redhat-000019</fabric8.version>
 
     <arquillian-cube.version>1.9.0</arquillian-cube.version>
     <assertj.version>2.4.1</assertj.version>
@@ -46,6 +45,12 @@
     <fabric8.maven.plugin.version>3.5.31</fabric8.maven.plugin.version>
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+
+    <spring.boot.starter.jetty>1.5.9.RELEASE</spring.boot.starter.jetty>
+    <dependency.mockito.version>1.10.19</dependency.mockito.version>
+    <dependency.swagger.core.version>1.5.12</dependency.swagger.core.version>
+    <spring-boot-maven-plugin.version>1.4.1.RELEASE</spring-boot-maven-plugin.version>
+    <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -74,51 +79,63 @@
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>
 
-    <!-- Enabling health checks -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
 
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-spring-boot-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-jetty</artifactId>
-        <version>2.19.1</version>
-    </dependency>
+  <repositories>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>maven.central</id>
+      <name>Maven Central</name>
+      <url>https://repo1.maven.org/maven2</url>
+    </repository>
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>redhat.ga</id>
+      <name>Red Hat General Availability Repository</name>
+      <url>https://maven.repository.redhat.com/ga</url>
+    </repository>
+  </repositories>
+  <pluginRepositories>
+    <pluginRepository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>maven.central</id>
+      <name>Maven Central</name>
+      <url>https://repo1.maven.org/maven2</url>
+    </pluginRepository>
+    <pluginRepository>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>redhat.ga</id>
+      <name>Red Hat General Availability Repository</name>
+      <url>https://maven.repository.redhat.com/ga</url>
+    </pluginRepository>
+  </pluginRepositories>
 
-    <!-- testing -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.arquillian.junit</groupId>
-      <artifactId>arquillian-junit-container</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.arquillian.cube</groupId>
-      <artifactId>arquillian-cube-openshift</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.fabric8</groupId>
-      <artifactId>kubernetes-assertions</artifactId>
-      <scope>test</scope>
-    </dependency>
 
-  </dependencies>
+
 
  <!-- <build>
     <defaultGoal>spring-boot:run</defaultGoal>

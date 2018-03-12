@@ -15,28 +15,113 @@
  */
 package com.zoli.route;
 
+import com.zoli.beans.KeySetterBean;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
+import org.apache.camel.component.infinispan.processor.idempotent.InfinispanIdempotentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 
 
 @Component
 public class MyRoute extends RouteBuilder {
 
 
+    @Autowired
+    InfinispanIdempotentRepository infinispanRepo;
+
+    @Autowired
+    KeySetterBean keySetterBean;
+
+
     @Override
     public void configure() throws Exception {
-        from("timer://foo?period=5000")
-                .id("timer-route")
+
+
+
+        //from("timer://foo1?period=5000")
+
+        from("quartz2://NavigateScheduler/CCSISOTimer?cron=0/10 * * * * ?")
+
+                .id("timer-route1")
+            .bean(keySetterBean, "setKey" )
+            .process(new Processor() {
+                @Override
+                public void process(Exchange exchange) throws Exception {
+                    System.out.println("hello");
+                }
+            })
+
             .setBody().constant("Hello Zoli")
-            .log(">>> ${body}");
+            .idempotentConsumer(simple("${header.key}"), infinispanRepo).eager(true).skipDuplicate(false).removeOnFailure(true)
+
+                .choice()
+                    .when(simple("${exchangeProperty.CamelDuplicateMessage} == true"))
+                        //.throwException(new RuntimeException("failed"))
+                        .log("ROUTE1 DUPLICATE")
+                    .otherwise()
+                        .log("ROUTE1 SUCCESS")
+                .end();
 
 
-      /*  from("jetty://http://0.0.0.0:8082/say")
-                .transform(method("myBean", "saySomething"))
-                .log("log ${body}");*/
+
+/*
+
+        from("timer://foo2?period=5000")
+                .id("timer-route2")
+                .bean(keySetterBean, "setKey" )
+                .process(new Processor() {
+                    @Override
+                    public void process(Exchange exchange) throws Exception {
+                        System.out.println("hello");
+                    }
+                })
+
+                .setBody().constant("Hello Zoli")
+
+                .idempotentConsumer(simple("${header.key}"), infinispanRepo).eager(true).skipDuplicate(false).removeOnFailure(true)
+
+                .choice()
+                    .when(simple("${exchangeProperty.CamelDuplicateMessage} == true"))
+                        //.throwException(new RuntimeException("failed"))
+                        .log("ROUTE2 DUPLICATE")
+                    .otherwise()
+                        .log("ROUTE2 SUCCESS")
+                .end();
+*/
+
+
+                //.log(">>> ${body}");
+
+
+
+       /* from("timer://foo3?period=5000")
+                .id("timer-route3")
+                .bean(keySetterBean, "setKey" )
+                .process(new Processor() {
+                    @Override
+                    public void process(Exchange exchange) throws Exception {
+                        System.out.println("hello");
+                    }
+                })
+
+                .setBody().constant("Hello Zoli")
+
+                .idempotentConsumer(simple("${header.key}"), infinispanRepo).eager(true).skipDuplicate(false).removeOnFailure(true)
+
+                .choice()
+                    .when(simple("${exchangeProperty.CamelDuplicateMessage} == true"))
+                        //.throwException(new RuntimeException("failed"))
+                        .log("ROUTE3 DUPLICATE")
+                    .otherwise()
+                        .log("ROUTE3 SUCCESS")
+                    .end();
+*/
+
+                //.log(">>> ${body}");
+
+
+
     }
 }

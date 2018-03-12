@@ -1,4 +1,4 @@
-package com.zoli.route;
+package com.zoli.beans;
 
 import com.zoli.mylib.beans.MyBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +11,8 @@ public class MyBeanie {
     private String say;
 
     public String saySomething() {
+
+
 
         MyBean myBean = new MyBean();
 
