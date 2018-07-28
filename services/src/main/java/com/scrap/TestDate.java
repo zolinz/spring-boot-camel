@@ -1,5 +1,6 @@
 package com.scrap;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,8 +11,8 @@ public class TestDate {
 
 
 
-        LocalTime localTime = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalDate localTime = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd");
 
 
         String currentTime = localTime.format(formatter);
