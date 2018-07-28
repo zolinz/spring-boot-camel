@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Component
+//@Component
 public class AggregationRoute extends RouteBuilder {
 
 
