@@ -2,6 +2,8 @@ package com.zoli.route;
 
 import com.zoli.beans.IdleConnectionMonitorThread;
 import com.zoli.beans.RequestSetter;
+import org.apache.camel.Exchange;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.http4.HttpComponent;
 import org.apache.http.config.SocketConfig;
@@ -19,8 +21,8 @@ public class TestConnectionReset extends RouteBuilder {
 
 
 
-    @Autowired
-    IdleConnectionMonitorThread idleConnectionMonitorThread;
+   /* @Autowired
+    IdleConnectionMonitorThread idleConnectionMonitorThread;*/
 
 
     @Bean
@@ -36,6 +38,14 @@ public class TestConnectionReset extends RouteBuilder {
         connectionManager.setMaxTotal(20);
         connectionManager.setDefaultSocketConfig(socketConfig);
         //connectionManager.closeIdleConnections(5000, TimeUnit.MILLISECONDS);
+
+
+        IdleConnectionMonitorThread idleConnectionMonitorThread = new IdleConnectionMonitorThread();
+
+        idleConnectionMonitorThread.setHttpClientConnectionManager(connectionManager);
+
+        (new Thread(idleConnectionMonitorThread)).start();
+
         return connectionManager;
     }
 
@@ -48,14 +58,20 @@ public class TestConnectionReset extends RouteBuilder {
 
         //myHttp4.setConnectionTimeToLive(60000);
 
-        idleConnectionMonitorThread.setHttpClientConnectionManager(myPoolingHttpClientConnectionManager());
+       // idleConnectionMonitorThread.setHttpClientConnectionManager(myPoolingHttpClientConnectionManager());
 
-        (new Thread(idleConnectionMonitorThread)).start();
+       // (new Thread(idleConnectionMonitorThread)).start();
 
-        from("timer://mytimer?delay=5s&period=420s&fixedRate=false")
+        from("timer://mytimer?delay=5s&period=20s&fixedRate=false")
                 .log("Testing timer")
                 .bean(requestSetter, "setRequest")
                 .log("${body}")
+                .process(new Processor() {
+                    @Override
+                    public void process(Exchange exchange) throws Exception {
+                        System.out.println("hello");
+                    }
+                })
 
                 .to("https4://sit-admissions-navitasdemo.studylink.com:443/webservices/providerAPI.cfc?clientConnectionManager=#myPoolingHttpClientConnectionManager")
                 .log("${body}")
