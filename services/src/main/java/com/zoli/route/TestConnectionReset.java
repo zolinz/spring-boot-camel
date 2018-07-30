@@ -15,7 +15,7 @@ public class TestConnectionReset extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        from("timer://mytimer?delay=3s&period=20s&fixedRate=false")
+        from("timer://mytimer?delay=5s&period=420s&fixedRate=false")
                 .log("Testing timer")
                 .bean(requestSetter, "setRequest")
                 .log("${body}")
