@@ -20,7 +20,7 @@ public class TestConnectionReset extends RouteBuilder {
 
         HttpComponent myHttp4 = (HttpComponent) getContext().getComponent("http4");
 
-        myHttp4.setConnectionTimeToLive(300000);
+        myHttp4.setConnectionTimeToLive(240000);
 
         from("timer://mytimer?delay=5s&period=420s&fixedRate=false")
                 .log("Testing timer")
