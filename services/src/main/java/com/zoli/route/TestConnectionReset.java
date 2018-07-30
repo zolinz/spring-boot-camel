@@ -28,6 +28,8 @@ public class TestConnectionReset extends RouteBuilder {
         SocketConfig socketConfig = SocketConfig.custom()
                 .setSoKeepAlive(false)
                 .setSoTimeout(60000)
+                .setSoLinger(0)
+                //.setSoReuseAddress(true)
                 //.setSoReuseAddress(true)
                 .build();
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
