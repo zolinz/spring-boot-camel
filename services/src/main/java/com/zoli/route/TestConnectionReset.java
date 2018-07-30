@@ -55,7 +55,7 @@ public class TestConnectionReset extends RouteBuilder {
                 .bean(requestSetter, "setRequest")
                 .log("${body}")
 
-                .to("https4://sit-admissions-navitasdemo.studylink.com:443/webservices/providerAPI.cfc?clientConnectionManager=#myPoolingHttpClientConnectionManager")
+                .to("https4://sit-admissions-navitasdemo.studylink.com:443/webservices/providerAPI.cfc?clientConnectionManager=#myPoolingHttpClientConnectionManager&connectionClose=true")
                 .log("${body}")
         ;
 
