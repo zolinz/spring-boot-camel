@@ -62,7 +62,7 @@ public class TestConnectionReset extends RouteBuilder {
 
        // (new Thread(idleConnectionMonitorThread)).start();
 
-        from("timer://mytimer?delay=5s&period=20s&fixedRate=false")
+        from("timer://mytimer?delay=5s&period=420s&fixedRate=false")
                 .log("Testing timer")
                 .bean(requestSetter, "setRequest")
                 .log("${body}")
