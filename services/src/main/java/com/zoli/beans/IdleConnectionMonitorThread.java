@@ -28,13 +28,13 @@ public class IdleConnectionMonitorThread implements Runnable {
             try {
                 while (!shutdown) {
                     synchronized (this) {
-                        System.out.println("Hello from Monitor thread");
+                       /// System.out.println("Hello from Monitor thread");
                         wait(1000 );
-                        System.out.println("Monitor thread closing expired connections");
+                        //System.out.println("Monitor thread closing expired connections");
                         // Close expired connections
                         connMgr.closeExpiredConnections();
 
-                        System.out.println("Monitor thread closing idle connections");
+                       // System.out.println("Monitor thread closing idle connections");
                         // Optionally, close connections
                         // that have been idle longer than 30 sec
                         connMgr.closeIdleConnections(30, TimeUnit.SECONDS);
