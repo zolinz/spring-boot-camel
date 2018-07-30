@@ -28,7 +28,7 @@ public class TestConnectionReset extends RouteBuilder {
     @Bean
     PoolingHttpClientConnectionManager myPoolingHttpClientConnectionManager() {
         SocketConfig socketConfig = SocketConfig.custom()
-                .setSoKeepAlive(true)
+                .setSoKeepAlive(false)
                 .setSoTimeout(60000)
                 //.setSoLinger(0)
                 //.setSoReuseAddress(true)
