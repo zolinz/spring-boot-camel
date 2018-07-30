@@ -44,9 +44,9 @@ public class TestConnectionReset extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
-        HttpComponent myHttp4 = (HttpComponent) getContext().getComponent("http4");
+        //HttpComponent myHttp4 = (HttpComponent) getContext().getComponent("http4");
 
-        myHttp4.setConnectionTimeToLive(60000);
+        //myHttp4.setConnectionTimeToLive(60000);
 
         idleConnectionMonitorThread.setHttpClientConnectionManager(myPoolingHttpClientConnectionManager());
 
