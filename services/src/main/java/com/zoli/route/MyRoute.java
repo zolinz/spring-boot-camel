@@ -16,6 +16,7 @@
 package com.zoli.route;
 
 import com.zoli.beans.KeySetterBean;
+import com.zoli.beans.MemoryCrunchBean;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
@@ -24,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
-//@Component
+@Component
 public class MyRoute extends RouteBuilder {
 
 
@@ -33,6 +34,8 @@ public class MyRoute extends RouteBuilder {
 
     @Autowired
     KeySetterBean keySetterBean;
+
+
 
 
     @Override

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 
-@Component
+//@Component
 public class TestConnectionReset extends RouteBuilder {
 
     @Autowired
@@ -29,7 +29,7 @@ public class TestConnectionReset extends RouteBuilder {
     PoolingHttpClientConnectionManager myPoolingHttpClientConnectionManager() {
         SocketConfig socketConfig = SocketConfig.custom()
                 .setSoKeepAlive(false)
-                .setSoTimeout(60000)
+                //.setSoTimeout(60000)
                 //.setSoLinger(0)
                 //.setSoReuseAddress(true)
                 //.setSoReuseAddress(true)
@@ -73,7 +73,7 @@ public class TestConnectionReset extends RouteBuilder {
                     }
                 })
 
-                .to("https4://sit-admissions-navitasdemo.studylink.com:443/webservices/providerAPI.cfc?clientConnectionManager=#myPoolingHttpClientConnectionManager")
+                .to("https4://sit-admissions-navitasdemo.studylink.com:443/webservices/providerAPI.cfc?clientConnectionManager=#myPoolingHttpClientConnectionManager&httpClient.socketTimeout=120000&httpClient.connectTimeout=120000")
                 .log("${body}")
         ;
 
