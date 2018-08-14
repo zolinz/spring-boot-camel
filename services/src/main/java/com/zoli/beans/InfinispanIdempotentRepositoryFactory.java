@@ -29,7 +29,7 @@ public class InfinispanIdempotentRepositoryFactory implements FactoryBean<Infini
 
             GlobalConfigurationBuilder global = GlobalConfigurationBuilder.defaultClusteredBuilder();
             //global.transport().addProperty("configurationFile", "jgroups.xml").clusterName("camelapp");
-            global.transport().addProperty("configurationFile", "jgroups-kube.xml").clusterName("camelapp")
+            global.transport().addProperty("configurationFile", "jgroups-kube.xml").clusterName("camelapp");
             //ConfigurationBuilder cb = new ConfigurationBuilder();
             //cb.addServers("localhost:11222");
             //cb.forceReturnValues(true);
