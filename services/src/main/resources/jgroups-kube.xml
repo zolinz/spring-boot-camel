@@ -26,8 +26,8 @@
         initial_hosts="172.31.47.164[7800],172.31.43.171[7800]"/-->
 
     <org.jgroups.protocols.kubernetes.KUBE_PING
-        namespace="${KUBE_NAMESPACE:production}"
-        labels="${KUBE_LABEL:cluster=nyc}"
+            namespace="${KUBERNETES_NAMESPACE}"
+            labels="${OPENSHIFT_KUBE_PING_LABELS}"
     />
 
     <MERGE3 max_interval="30000"
