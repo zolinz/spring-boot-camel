@@ -21,7 +21,7 @@ public class MemoryCrunchBean {
         memoryAllocated[0] = 0;
 
         //counter *= 4;
-        //System.out.println("COUNTER: " + counter);
+        System.out.println("created large array " );
 
 
     }
