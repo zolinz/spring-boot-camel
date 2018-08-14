@@ -17,7 +17,7 @@ public class MemoryCrunchBean {
 
 
 
-        long[] memoryAllocated = new long[1000000];
+        long[] memoryAllocated = new long[10000000];
         memoryAllocated[0] = 0;
 
         //counter *= 4;
