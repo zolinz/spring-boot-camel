@@ -1,0 +1,17 @@
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservices">
+	<soapenv:Header/>
+	<soapenv:Body>
+		<updateCoursesResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+			<updateCoursesReturn xsi:type="xsd:string">
+				<![CDATA[<CourseUpdateResult>
+			<message/>
+			<success>1</success>
+			<coursesDeleted>2</coursesDeleted>
+			<coursesInserted>5</coursesInserted>
+			<totalCourses>304</totalCourses>
+			<coursesUpdated>299</coursesUpdated>
+			</CourseUpdateResult>]]>
+			</updateCoursesReturn>
+		</updateCoursesResponse>
+	</soapenv:Body>
+</soapenv:Envelope>
