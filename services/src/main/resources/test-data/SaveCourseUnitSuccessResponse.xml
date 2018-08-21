@@ -1,0 +1,23 @@
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservices">
+    <soapenv:Header/>
+    <soapenv:Body>
+
+
+        <web:saveCourseUnitResponse soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+            <saveCourseUnitReturn xsi:type="xsd:string"><![CDATA[
+                 <saveAllCourseUnitsResponse>
+            <Unit UnitID="xxxx-yyyy-yyyy-saibt1" Success="1" UnitCode="HLTH1038-2018-International" UnitCampusCode="992"/>
+            <Unit UnitID="xxxx-yyyy-yyyy-saibt2" Success="1" UnitCode="HLTH1038-2018-Domestic" UnitCampusCode="992"/>
+            <Unit UnitID="xxxx-yyyy-yyyy-saibt3" Success="1" UnitCode="HLTH1078-2018-International" UnitCampusCode="993"/>
+            <Unit UnitID="xxxx-yyyy-yyyy-saibt4" Success="1" UnitCode="HLTH1078-2018-Domestic" UnitCampusCode="998"/>
+            </saveAllCourseUnitsResponse>
+            ]]>
+
+
+            </saveCourseUnitReturn>
+        </web:saveCourseUnitResponse>
+
+
+
+    </soapenv:Body>
+</soapenv:Envelope>

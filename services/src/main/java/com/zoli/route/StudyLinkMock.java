@@ -103,6 +103,20 @@ public class StudyLinkMock extends RouteBuilder {
                         .setBody(simple(readFile("test-data/UpdateCourseSuccessResponse.xml")))
                         .log("${body}")
 
+
+                    .when().xpath("//*[local-name()='saveAllCourseUnits']")
+
+                    .log("${body}")
+                    .setBody(simple(readFile("test-data/SaveCourseUnitSuccessResponse.xml")))
+                    .log("${body}")
+
+
+                .when().xpath("//*[local-name()='saveAllCourseUnitSets']")
+
+                    .log("${body}")
+                    .setBody(simple(readFile("test-data/SaveCourseUnitSetsSuccessResponse.xml")))
+                    .log("${body}")
+
         ;
     }
 
