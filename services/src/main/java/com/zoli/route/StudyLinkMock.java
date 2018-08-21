@@ -4,9 +4,12 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @Component
@@ -18,7 +21,12 @@ public class StudyLinkMock extends RouteBuilder {
 
     public static String readFile(String reference) {
         try {
-            return org.apache.commons.io.FileUtils.readFileToString(ResourceUtils.getFile("classpath:" + reference), StandardCharsets.UTF_8);
+
+
+            InputStream  inputStream = new ClassPathResource(reference).getInputStream();
+            String theString = IOUtils.toString(inputStream, StandardCharsets.UTF_8);
+            return theString;
+            //return org.apache.commons.io.FileUtils.readFileToString(ResourceUtils.getFile("classpath:" + reference), StandardCharsets.UTF_8);
         } catch (Exception e) {
             throw new RuntimeException("Can't read file: "+ reference, e);
         }
