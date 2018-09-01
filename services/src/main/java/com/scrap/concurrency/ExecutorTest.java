@@ -8,10 +8,10 @@ public class ExecutorTest {
 
 
 
-    public static void main(String ... args) throws InterruptedException{
+    public static void main(String ... args) throws Exception{
 
         ExecutorService executorService =
-                new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
+                new ThreadPoolExecutor(5, 10, 1000L, TimeUnit.MILLISECONDS,
                         new LinkedBlockingQueue<Runnable>());
 
 
@@ -23,35 +23,47 @@ public class ExecutorTest {
             }
         };
 
-        Callable<Integer> callableTask = () -> {
-            TimeUnit.MILLISECONDS.sleep(10000);
-            return 5;
+        Callable<String> callableTask = () -> {
+            TimeUnit.MILLISECONDS.sleep(300);
+            return "im done";
         };
 
-        List<Callable<Integer>> callableTasks = new ArrayList<>();
+        List<Callable<String>> callableTasks = new ArrayList<>();
+        callableTasks.add(callableTask);
         callableTasks.add(callableTask);
         callableTasks.add(callableTask);
         callableTasks.add(callableTask);
 
 
-        Future<Integer> future =
+        /*Future<String> future =
                 executorService.submit(callableTask);
+*/
+        List<Future<String>> futures = executorService.invokeAll(callableTasks);
 
 
-        Integer result = null;
+        String result = null;
 
-        while(!future.isDone()) {
+
+        Thread.sleep(15000);
+
+        for(Future f : futures){
+            result =  (String) f.get(3000, TimeUnit.MILLISECONDS);
+
+            System.out.println(result);
+        }
+
+       /* while(!future.isDone()) {
             System.out.println("Task is still not done...");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         }
 
         try {
-            result = future.get(15000, TimeUnit.MILLISECONDS);
+            result = future.get(35000, TimeUnit.MILLISECONDS);
         } catch (InterruptedException | ExecutionException | TimeoutException e) {
             e.printStackTrace();
         }
+*/
 
-        System.out.println(result);
 
         System.exit(0);
 

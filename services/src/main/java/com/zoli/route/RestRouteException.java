@@ -52,6 +52,10 @@ public class RestRouteException extends RouteBuilder {
                     }
                 })
 
+
+                .process((exchange)-> {
+                    System.out.println("hello");
+                })
                 .log("log ${body}");
     }
 }

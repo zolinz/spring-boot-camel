@@ -33,10 +33,13 @@ public class AggregationRoute extends RouteBuilder {
                     }
                 })
 
+                .process(exchange -> System.out.println(" hello from lambda"))
+
                 .split(simple("body"), numberAggregator)
                     .log("${body}")
 
                 .end()
+                .log("${exchangeProperty.total}")
 
         ;
 

@@ -7,8 +7,6 @@ import org.apache.camel.model.rest.RestBindingMode;
 import org.apache.commons.io.IOUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
-
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
