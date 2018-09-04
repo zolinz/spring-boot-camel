@@ -1,6 +1,8 @@
 package com.scrap.concurrency.delayedblockingq;
 
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.Delayed;
+import java.util.concurrent.TimeUnit;
 
 
 public class DelayedWorker implements Delayed
@@ -13,6 +15,16 @@ public class DelayedWorker implements Delayed
     public DelayedWorker(BlockingQueue<Integer> blockingQueue){
         this.blockingQueue = blockingQueue;
 
+    }
+
+    @Override
+    public long getDelay(TimeUnit unit) {
+        return 0;
+    }
+
+    @Override
+    public int compareTo(Delayed o) {
+        return 0;
     }
 
 
